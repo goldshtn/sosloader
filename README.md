@@ -7,6 +7,8 @@ Recent versions of WinDbg can download the correct SOS and DAC when you run the 
 
 To use sosloader, you need to make sure that dbghelp.dll and symsrv.dll are accessible to the application when it runs. The project is configured to copy these files from the default Windows SDK installation directory -- you might need to modify this to suit your needs.
 
+Also, make sure that your symbol path points to the Microsoft symbol server. For example, you can set the _NT_SYMBOL_PATH environment variable to ```srv*C:\symbols*http://msdl.microsoft.com/download/symbols```.
+
 Usage:
 
 ```
