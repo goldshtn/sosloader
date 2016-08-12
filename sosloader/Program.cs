@@ -129,7 +129,7 @@ namespace sosloader
                 return;
             }
 
-            string dacLocation = target.ClrVersions[0].TryGetDacLocation();
+            string dacLocation = target.ClrVersions[0].LocalMatchingDac;
             if (!String.IsNullOrEmpty(dacLocation))
             {
                 //No symbol load needed, the files are available on the local machine
@@ -146,7 +146,7 @@ namespace sosloader
             string debugSupportFilesLocation = DacLocator.GetDebugSupportFiles(target.ClrVersions[0], target);
             if (args[0] == "launch")
             {
-                Console.WriteLine("Launching windbg.exe with the provided dump file...");
+                Console.WriteLine("Launching windbg.exe with the provided dump file (must be in path)...");
                 string loadCommand = String.Format(".load {0}; .cordll -se -lp {1}",
                     Path.Combine(debugSupportFilesLocation, "sos"), debugSupportFilesLocation);
                 Process.Start("windbg.exe", String.Format("-z {0} -c \"{1}\"", dumpFilePath, loadCommand));
